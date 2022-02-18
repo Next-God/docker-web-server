@@ -104,6 +104,7 @@ log-error               = /var/lib/mysql/mysql.error.log
 
 ### 捐赠列表top10
 
-1. 胡大帅  ￥1000
-2. 蒋某总  ￥500
-3. 方白逸  ￥500
+1. 陈曦总(https://github.com/MQEnergy)    ￥1000
+2. 胡大帅(https://github.com/hushulin)   ￥500
+2. 蒋某总(https://github.com/linjiangl)  ￥500
+3. 方白逸(https://github.com/fbaiyi)     ￥500
