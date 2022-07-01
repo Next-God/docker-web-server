@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mongodb:
+    container_name: dmongodb
+    image: mongo:${MONGODB_VERSION}
+    restart: always
+    ports:
+      - '${MONGODB_HOST_PORT}:27017'
+    volumes:
+      - ${MONGODB_DATA_DIR}:/data/db    # 挂载数据文件，根据实际路径修改 ：前的路径
+    #  - ${MONGODB_LOG_DIR}:/var/log/mongodb  # 挂载日志文件，根据实际路径修改 ：前的路径
+    #  - ${MONGODB_CONF_FILE}:/etc/mongo  # 挂载配置文件，根据实际路径修改 ：前的路径
+    tty: true
+    networks:
+      - default
+    environment:
+      TZ: Asia/Shanghai
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.24.0.0/16
