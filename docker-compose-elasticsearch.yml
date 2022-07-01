@@ -1,0 +1,28 @@
+version: '3'
+services:
+  elasticsearch:
+      container_name: delasticsearch
+      build:
+        context:  ./build/elasticsearch
+        args:
+          ELASTICSEARCH_VERSION: ${ELASTICSEARCH_VERSION}
+          ELASTICSEARCH_PLUGINS: ${ELASTICSEARCH_PLUGINS}
+      environment:
+        - TZ=$TZ
+        - discovery.type=single-node
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      volumes:
+        - ${ELASTICSEARCH_DATA_DIR}:/usr/share/elasticsearch/data
+        - ${ELASTICSEARCH_CONF_FILE}:/usr/share/elasticsearch/config/elasticsearch.yml
+      hostname: elasticsearch
+      restart: always
+      ports:
+        - "${ELASTICSEARCH_HOST_PORT_C}:9200"
+        - "${ELASTICSEARCH_HOST_PORT_S}:9300"
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.24.0.0/16
