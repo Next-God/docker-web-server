@@ -105,6 +105,12 @@ if [ -z "${EXTENSIONS##*,xhprof,*}" ]; then
     && docker-php-ext-enable xhprof
 fi
 
+if [ -z "${EXTENSIONS##*,grpc,*}" ]; then
+    echo "---------- Install grpc ----------"
+	  pecl install grpc
+    docker-php-ext-enable grpc
+fi
+
 if [ -z "${EXTENSIONS##*,protobuf,*}" ]; then
     echo "---------- Install protobuf ----------"
 	pecl install protobuf-3.10.0
