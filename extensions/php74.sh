@@ -112,6 +112,14 @@ if [ -z "${EXTENSIONS##*,protobuf,*}" ]; then
     docker-php-ext-enable protobuf
 fi
 
+if [ -z "${EXTENSIONS##*,imagick,*}" ]; then
+    echo "---------- Install imagick ----------"
+	apk add --no-cache file-dev
+	apk add --no-cache imagemagick-dev
+    printf "\n" | pecl install imagick-3.4.4
+    docker-php-ext-enable imagick
+fi
+
 cd /tmp
 php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');"
 php composer-setup.php
